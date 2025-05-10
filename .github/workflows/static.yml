@@ -1,0 +1,164 @@
+# Simple workflow for deploying static content to GitHub Pages
+name: Deploy static content to Pages
+
+on:
+  # Runs on pushes targeting the default branch
+  push:
+    branches: ["main"]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
+# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  # Single deploy job since we're just deploying
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        <!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Johnnie Torres - Arrocha Romântico</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      margin: 0;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+    header {
+      background-color: #2b2d42;
+      color: white;
+      padding: 2rem;
+      text-align: center;
+    }
+    header h1 {
+      margin: 0;
+    }
+    nav {
+      background-color: #1a1c2c;
+      padding: 1rem;
+      text-align: center;
+    }
+    nav a {
+      color: white;
+      margin: 0 1rem;
+      text-decoration: none;
+    }
+    section {
+      padding: 2rem;
+    }
+    .agenda-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .agenda-table th, .agenda-table td {
+      border: 1px solid #ccc;
+      padding: 0.5rem;
+      text-align: center;
+    }
+    footer {
+      background-color: #2b2d42;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Johnnie Torres</h1>
+    <p>A voz do arrocha romântico da Bahia</p>
+  </header>
+  
+  <nav>
+    <a href="#sobre">Sobre</a>
+    <a href="#musicas">Músicas</a>
+    <a href="#agenda">Agenda</a>
+    <a href="#fotos">Fotos</a>
+    <a href="#contato">Contato</a>
+  </nav>
+
+  <section id="sobre">
+    <h2>Sobre</h2>
+    <p>Johnnie Torres é um cantor e compositor baiano, apaixonado pelo arrocha romântico. Natural de Salvador, ele mistura sentimento, talento e presença de palco para encantar públicos por onde passa. Suas letras falam de amor, saudade e histórias reais.</p>
+  </section>
+
+  <section id="musicas">
+    <h2>Músicas e Vídeos</h2>
+    <p>Ouça no Spotify:</p>
+    <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/37i9dQZF1DWV3Ck2kWm8ED" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+  </section>
+
+  <section id="agenda">
+    <h2>Agenda de Shows</h2>
+    <table class="agenda-table">
+      <tr>
+        <th>Data</th>
+        <th>Cidade</th>
+        <th>Local</th>
+        <th>Ingressos</th>
+      </tr>
+      <tr>
+        <td>17/05/2025</td>
+        <td>Feira de Santana</td>
+        <td>Arena Music</td>
+        <td><a href="#">Comprar</a></td>
+      </tr>
+      <tr>
+        <td>25/05/2025</td>
+        <td>Salvador - BA</td>
+        <td>Largo do Pelourinho</td>
+        <td>Entrada Livre</td>
+      </tr>
+    </table>
+  </section>
+
+  <section id="fotos">
+    <h2>Fotos</h2>
+    <p>Galeria em construção.</p>
+  </section>
+
+  <section id="contato">
+    <h2>Contato</h2>
+    <p>Email: contato@johnnietorres.com</p>
+    <p>WhatsApp: (71) 9 9999-9999</p>
+    <p>Siga nas redes sociais: Instagram | YouTube | TikTok | Facebook</p>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Johnnie Torres. Todos os direitos reservados.</p>
+  </footer>
+</body>
+</html>
+
+        with:
+          # Upload entire repository
+          path: '.'
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
